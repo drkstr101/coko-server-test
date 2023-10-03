@@ -28,7 +28,7 @@ const seed = async () => {
 
   await collection.save();
 
-  logger.info("Seeding complete.");
+  console.info("Seeding complete.");
 };
 
 seed().catch((err) => {
