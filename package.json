@@ -7,8 +7,6 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@pubsweet/db-manager": "^3.1.26",
-    "@pubsweet/models": "^0.3.26",
-    "pubsweet-server": "^13.12.11"
+    "@coko/server": "^3.0.0"
   }
 }

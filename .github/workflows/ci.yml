@@ -11,7 +11,7 @@ jobs:
   main:
     strategy:
       matrix:
-        node-version: ["12.22.12", "14.21.3", "16.20.2", "18.18.0"]
+        node-version: ["14.21.3", "16.20.2", "18.18.0"]
     # Containers must run in Linux based operating systems
     runs-on: ubuntu-latest
     # Docker Hub image that `container-job` executes in
