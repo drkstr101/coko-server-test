@@ -1,0 +1,9 @@
+{
+  "name": "coko-server-test",
+  "version": "0.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/drkstr101/coko-server-test.git",
+  "author": "Aaron Miller <amiller@aps.org>",
+  "license": "MIT",
+  "private": true
+}
