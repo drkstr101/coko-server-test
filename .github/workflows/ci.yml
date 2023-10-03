@@ -35,6 +35,9 @@ jobs:
           --health-retries 5
 
     steps:
+      - name: Install system packages
+        run: apk add --no-cache --upgrade bash curl git g++ make libc6-compat py3-pip
+
       # Downloads a copy of the code in your repository before running CI tests
       - name: Check out repository code
         uses: actions/checkout@v4
