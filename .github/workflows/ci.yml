@@ -1,5 +1,10 @@
-name: PostgreSQL service example
-on: push
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
 
 jobs:
   # Label of the container job
@@ -10,7 +15,7 @@ jobs:
     # Containers must run in Linux based operating systems
     runs-on: ubuntu-latest
     # Docker Hub image that `container-job` executes in
-    container: node:${{ matrix.node-version }}
+    container: "node:${{ matrix.node-version }}-alpine"
 
     # Service containers to run with `container-job`
     services:
