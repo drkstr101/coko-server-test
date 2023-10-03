@@ -1,0 +1,50 @@
+name: E2E
+
+on:
+  push:
+    branches:
+      - main
+      - prism
+  pull_request:
+
+jobs:
+  # Label of the container job
+  main:
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: ['14.21.3', '16.20.2', '18.18.0']
+    # Containers must run in Linux based operating systems
+    runs-on: ubuntu-latest
+    # Docker Hub image that `container-job` executes in
+    container: 'node:${{ matrix.node-version }}-buster'
+
+    # Service containers to run with `container-job`
+    services:
+      # Label used to access the service container
+      db:
+        # Docker Hub image
+        image: postgres
+        # Provide the password for postgres
+        env:
+          POSTGRES_DB: test
+          POSTGRES_PASSWORD: postgres
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      # Downloads a copy of the code in your repository before running CI tests
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Run E2E tests
+        uses: cypress-io/github-action@v3
+        with:
+          project: ./apps/cypress
+          browser: chrome
+          start: yarn start
+          wait-on: 'http://localhost:3000'

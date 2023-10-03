@@ -1,12 +1,47 @@
 {
-  "name": "coko-server-test",
+  "name": "@prism/workspace",
   "version": "0.0.0",
-  "main": "index.js",
-  "repository": "https://github.com/drkstr101/coko-server-test.git",
-  "author": "Aaron Miller <amiller@aps.org>",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "format": "nx format",
+    "lint": "nx format:check && nx run-many --target=lint --parallel",
+    "test": "nx run-many --target=test --parallel --coverage",
+    "build": "nx run-many --target=build --parallel",
+    "start": "nx run-many --target=serve --parallel"
+  },
   "dependencies": {
-    "@coko/server": "^3.0.0"
-  }
+    "axios": "^1.0.0",
+    "express": "~4.18.1",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@nx/cypress": "^16.9.1",
+    "@nx/esbuild": "16.9.1",
+    "@nx/eslint-plugin": "16.9.1",
+    "@nx/jest": "16.9.1",
+    "@nx/js": "16.9.1",
+    "@nx/linter": "16.9.1",
+    "@nx/node": "16.9.1",
+    "@nx/workspace": "16.9.1",
+    "@types/express": "~4.17.13",
+    "@types/jest": "^29.4.0",
+    "@types/node": "~18.7.1",
+    "@typescript-eslint/eslint-plugin": "^5.60.1",
+    "@typescript-eslint/parser": "^5.60.1",
+    "cypress": "^13.0.0",
+    "esbuild": "^0.17.17",
+    "eslint": "~8.46.0",
+    "eslint-config-prettier": "8.1.0",
+    "eslint-plugin-cypress": "^2.13.4",
+    "jest": "^29.4.1",
+    "jest-environment-node": "^29.4.1",
+    "nx": "16.9.1",
+    "nx-cloud": "latest",
+    "prettier": "^2.6.2",
+    "ts-jest": "^29.1.0",
+    "ts-node": "10.9.1",
+    "typescript": "~5.1.3"
+  },
+  "packageManager": "yarn@3.6.3"
 }

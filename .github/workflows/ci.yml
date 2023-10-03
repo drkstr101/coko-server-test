@@ -4,57 +4,27 @@ on:
   push:
     branches:
       - main
+      - prism
   pull_request:
 
 jobs:
-  # Label of the container job
   main:
-    strategy:
-      fail-fast: false
-      matrix:
-        node-version: ["14.21.3", "16.20.2", "18.18.0"]
-    # Containers must run in Linux based operating systems
-    runs-on: ubuntu-latest
-    # Docker Hub image that `container-job` executes in
-    container: "node:${{ matrix.node-version }}-alpine"
+    name: Nx Cloud - Main Job
+    uses: nrwl/ci/.github/workflows/nx-cloud-main.yml@v0.13.0
+    with:
+      main-branch-name: main
+      number-of-agents: 3
+      init-commands: |
+        yarn nx-cloud start-ci-run --stop-agents-after="build" --agent-count=3
+      parallel-commands: |
+        yarn nx-cloud record -- yarn nx format:check
+      parallel-commands-on-agents: |
+        yarn nx affected --target=lint --parallel=3
+        yarn nx affected --target=test --parallel=3 --ci --code-coverage
+        yarn nx affected --target=build --parallel=3
 
-    # Service containers to run with `container-job`
-    services:
-      # Label used to access the service container
-      db:
-        # Docker Hub image
-        image: postgres
-        # Provide the password for postgres
-        env:
-          POSTGRES_DB: test
-          POSTGRES_PASSWORD: postgres
-        # Set health checks to wait until postgres has started
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-
-    steps:
-      - name: Install system packages
-        run: apk add --no-cache --upgrade bash curl git g++ make libc6-compat py3-pip
-
-      # Downloads a copy of the code in your repository before running CI tests
-      - name: Check out repository code
-        uses: actions/checkout@v4
-
-      # Performs a clean installation of all dependencies in the `package.json` file
-      # For more information, see https://docs.npmjs.com/cli/ci.html
-      - name: Install dependencies
-        run: yarn --frozen-lock-file
-
-      - name: Connect to PostgreSQL
-        # Runs a script that creates a PostgreSQL table, populates
-        # the table with data, and then retrieves the data.
-        run: node .
-        # Environment variables used by the `client.js` script to create a new PostgreSQL table.
-        env:
-          # The hostname used to communicate with the PostgreSQL service container
-          POSTGRES_HOST: db
-          # The default PostgreSQL port
-          POSTGRES_PORT: 5432
+  agents:
+    name: Nx Cloud - Agents
+    uses: nrwl/ci/.github/workflows/nx-cloud-agents.yml@v0.13.0
+    with:
+      number-of-agents: 3
