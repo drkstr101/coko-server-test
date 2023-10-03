@@ -10,6 +10,7 @@ jobs:
   # Label of the container job
   main:
     strategy:
+      fail-fast: false
       matrix:
         node-version: ["14.21.3", "16.20.2", "18.18.0"]
     # Containers must run in Linux based operating systems
