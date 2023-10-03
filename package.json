@@ -5,5 +5,9 @@
   "repository": "https://github.com/drkstr101/coko-server-test.git",
   "author": "Aaron Miller <amiller@aps.org>",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "@pubsweet/db-manager": "^3.1.26",
+    "@pubsweet/models": "^0.3.26"
+  }
 }
