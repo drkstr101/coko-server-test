@@ -15,6 +15,7 @@ module.exports = {
       password: process.env['POSTGRES_PASSWORD'] || 'postgres',
       port: parseInt(process.env['POSTGRES_PORT'], 10) || 5432,
     },
+    useJobQueue: false,
   },
   authsome: {
     // this should be either an npm package or an absolute path, not a relative path
