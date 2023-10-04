@@ -6,7 +6,7 @@ image:
 tasks:
   - name: Startup Task
     init: yarn # runs during prebuild => https://www.gitpod.io/docs/configure/projects/prebuilds
-    command: yarn start
+    command: docker compose up --detach && yarn start
 
 # List the ports to expose. Learn more: https://www.gitpod.io/docs/configure/workspaces/ports
 ports:
