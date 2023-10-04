@@ -18,8 +18,8 @@ const resolvers = {
         message: 'Welcome to prism!',
         date: new Date(),
         // TODO - we need to figure out how to update the graphql context to pass this through
-        // url: this.req.url,
-        // headers: Object.assign({}, this.req.headers),
+        // url: ctx.request.url,
+        // headers: Object.assign({}, ctx.request.headers),
       };
     },
   },

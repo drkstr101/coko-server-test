@@ -7,6 +7,7 @@ module.exports = {
   'pubsweet-server': {
     host: 'localhost',
     port: 3000,
+    secret: 'NOT_A_SECRET',
     db: {
       user: process.env['POSTGRES_USER'] || 'postgres',
       host: process.env['POSTGRES_HOST'] || 'localhost',
@@ -27,11 +28,11 @@ module.exports = {
     //   },
     // },
   },
-  dbManager: {
-    username: 'admin',
-    password: 'password',
-    email: 'admin@example.com',
-    admin: true,
-    clobber: true,
-  },
+  // dbManager: {
+  //   username: 'admin',
+  //   password: 'password',
+  //   email: 'admin@example.com',
+  //   admin: true,
+  //   clobber: true,
+  // },
 };

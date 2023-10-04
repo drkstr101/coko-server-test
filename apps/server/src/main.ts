@@ -9,6 +9,6 @@ export async function main() {
 
 // Run the server application
 main().catch((err) => {
-  console.error('Cannot start the server application.', err);
+  console.trace(err);
   process.exit(1);
 });
