@@ -1,14 +1,14 @@
-import express from 'express';
+import config from 'config';
+import { ExpressServer } from './server';
 
-const host = process.env.HOST ?? 'localhost';
-const port = process.env.PORT ? Number(process.env.PORT) : 3000;
+export async function main() {
+  const server = new ExpressServer(config);
+  await server.boot();
+  await server.start();
+}
 
-const app = express();
-
-app.get('/api/ping', (req, res) => {
-  res.send({ message: 'Welcome to prism!' });
-});
-
-app.listen(port, host, () => {
-  console.log(`[ ready ] http://${host}:${port}`);
+// Run the server application
+main().catch((err) => {
+  console.error('Cannot start the server application.', err);
+  process.exit(1);
 });
