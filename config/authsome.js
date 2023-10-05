@@ -1,5 +1,9 @@
+/**
+ * Do not edit, authsome is deprecated and server-side permissions should be handled by shield
+ */
+
 module.exports = {
-  before: async (userId, operation, object, context) => true,
-  // const user = userId && (await context.models.User.find(userId))
-  // return user && user.admin
+  before: () => {
+    return Promise.resolve(true);
+  },
 };
