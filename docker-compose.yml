@@ -1,4 +1,4 @@
-version: "3.1"
+version: '3.1'
 
 services:
   db:
@@ -9,7 +9,8 @@ services:
       POSTGRES_DB: test
       POSTGRES_PASSWORD: postgres
     volumes:
-      - db-data:/var/lib/postgresql/data
+      - ./init-pgboss.sql:/docker-entrypoint-initdb.d/init-pgboss.sql
+      # - db-data:/var/lib/postgresql/data
 
   adminer:
     image: adminer
